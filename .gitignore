@@ -1,0 +1,3 @@
+*.oms
+*.osm.pbf
+build/
