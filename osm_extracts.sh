@@ -73,7 +73,7 @@ read choice
       $mapsforge :mapsforge-poi-writer:fatjar
       mv mapsforge-poi-writer/build/libs/*.jar ../osmosis/bin/plugins/
       cd $(dirname $osmosis)
-      $osmosis --rb file=$osm_input --poi-writer ways=false file=$poi_file
+      $osmosis --rbf workers=5 file=$osm_input --poi-writer geo-tags=true ways=false file=$poi_file
       exit 0
       ;;
     [4] )
