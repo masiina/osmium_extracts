@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # tool paths
-osmium="/home/masiina/tools/osmium-tool/build/osmium"
-splitter="/home/masiina/tools/splitter/splitter.jar"
-mkgmap="/home/masiina/tools/mkgmap/mkgmap.jar"
-osmosis="/home/masiina/tools/osmosis/bin/osmosis"
-mapsforge="/home/masiina/tools/mapsforge/gradlew"
+osmium="$(pwd)/tools/osmium-tool/build/osmium"
+splitter="$(pwd)/tools/splitter/splitter.jar"
+mkgmap="$(pwd)/tools/mkgmap/mkgmap.jar"
+osmosis="$(pwd)/tools/osmosis/bin/osmosis"
+mapsforge="$(pwd)/tools/mapsforge/gradlew"
 PARENT_DIR=$(pwd)
 
 #data inputs
@@ -49,7 +49,7 @@ read choice
       $osmium tags-filter "$osm_input" w/surface=unpaved,gravel,dirt,earth,fine_gravel w/highway=track w/piste:type -o $osm_output
       java -Xmx6000M -jar "$splitter" $osm_output
       java -Xmx6000M -jar "$mkgmap" --gmapsupp 6324*.osm.pbf "$unpaved_typ"
-      echo "rename img to gravel"
+      echo "renamed img to gravel"
       mv gmapsupp.img ../gravel.img
       cd ..
       rm -r data/
@@ -61,7 +61,7 @@ read choice
       $osmium tags-filter "$osm_output1" w/highway!=motorway,motorway_link,trunk -o $osm_output
       java -Xmx6000M -jar "$splitter" $osm_output
       java -Xmx6000M -jar "$mkgmap" --gmapsupp 6324*.osm.pbf "$paved_typ"
-      echo "rename img to gravel"
+      echo "renamed img to gravel"
       mv gmapsupp.img ../paved.img
       cd ..
       rm -r data/
