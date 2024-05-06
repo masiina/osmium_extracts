@@ -6,7 +6,9 @@ splitter="$(pwd)/tools/splitter/splitter.jar"
 mkgmap="$(pwd)/tools/mkgmap/mkgmap.jar"
 osmosis="$(pwd)/tools/osmosis/bin/osmosis"
 mapsforge="$(pwd)/tools/mapsforge/gradlew"
+POIs_config="poi-mapping.xml"
 PARENT_DIR=$(pwd)
+
 
 #data inputs
 osm_input="$PARENT_DIR/finland-latest.osm.pbf"
@@ -73,7 +75,8 @@ read choice
       $mapsforge :mapsforge-poi-writer:fatjar
       mv mapsforge-poi-writer/build/libs/*.jar ../osmosis/bin/plugins/
       cd $(dirname $osmosis)
-      $osmosis --rbf workers=5 file=$osm_input --poi-writer geo-tags=true ways=false file=$poi_file
+      echo $POIs_config
+      $osmosis --rbf workers=5 file=$osm_input --poi-writer ways=false file=$poi_file
       exit 0
       ;;
     [4] )
