@@ -76,7 +76,7 @@ read choice
       mv mapsforge-poi-writer/build/libs/*.jar ../osmosis/bin/plugins/
       cd $(dirname $osmosis)
       echo $POIs_config
-      $osmosis --rbf workers=5 file=$osm_input --poi-writer ways=false file=$poi_file
+      $osmosis --rbf workers=5 file=$osm_input --poi-writer file=$poi_file
       exit 0
       ;;
     [4] )
