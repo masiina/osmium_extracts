@@ -1,0 +1,4 @@
+*.oms
+*.osm.pbf
+*.img
+build/
