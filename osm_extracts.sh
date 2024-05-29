@@ -50,7 +50,7 @@ read choice
   case $choice in
     [1] )
       echo "processing"
-      $osmium tags-filter "$osm_input" w/surface=unpaved,gravel,dirt,earth,fine_gravel,compacted,woodchips w/highway=track,unclassified w/piste:type -o $osm_output1
+      $osmium tags-filter "$osm_input" w/surface=unpaved,gravel,dirt,earth,fine_gravel,compacted,woodchips w/highway=track w/piste:type -o $osm_output1
       $osmium tags-filter "$osm_output1" -i w/surface=asphalt,paved,concrete -o $osm_output
       java -Xmx6000M -jar "$splitter" $osm_output
       java -Xmx6000M -jar "$mkgmap" --family-id=7777 --family-name=Gravel_finland --mapname=88888888 --overview-mapname=Gravel_finland --area-name=gravel --country-name=FINLAND --country-abbr=FI --code-page=1252 --improve-overview --gmapsupp 6324*.osm.pbf  "$unpaved_typ"
@@ -65,7 +65,7 @@ read choice
       $osmium tags-filter "$osm_input" w/surface=asphalt,paved w/highway=secondary,tertiary -o $osm_output1
       $osmium tags-filter "$osm_output1" w/highway!=motorway,motorway_link,trunk -o $osm_output
       java -Xmx6000M -jar "$splitter" --mapid=63260002 $osm_output
-      java -Xmx6000M -jar "$mkgmap" --family-id=7778 --family-name=Paved_finland --mapname=88888889 --series-name=Gravel --overview-mapname=paved_finland --improve-overview --country-name=FINLAND --country-abbr=FI --code-page=1252 --gmapsupp --gmapsupp 6326*.osm.pbf "$paved_typ"
+      java -Xmx6000M -jar "$mkgmap" --family-id=7778 --family-name=Paved_finland --mapname=88888889 --series-name=paved --overview-mapname=paved_finland --improve-overview --country-name=FINLAND --country-abbr=FI --code-page=1252 --gmapsupp 6326*.osm.pbf "$paved_typ"
       echo "renamed img to paved"
       mv gmapsupp.img ../paved.img
       cd ..
